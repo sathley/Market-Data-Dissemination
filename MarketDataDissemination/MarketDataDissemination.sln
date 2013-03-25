@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketDataDissemination.Server", "MarketDataDissemination\MarketDataDissemination.Server.csproj", "{BD1B8560-048C-4B08-81BB-2E0795AC1172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketDataDissemination.Client", "MarketDataDissemination.Client\MarketDataDissemination.Client.csproj", "{90FE68FB-E912-42D8-9450-323DEAB6C419}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketDataDissemination.Infrastructure", "MarketDataDissemination.Infrastructure\MarketDataDissemination.Infrastructure.csproj", "{D91DEC5A-5C18-4609-8D21-382F12814740}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD1B8560-048C-4B08-81BB-2E0795AC1172}.Debug|x86.ActiveCfg = Debug|x86
+		{BD1B8560-048C-4B08-81BB-2E0795AC1172}.Debug|x86.Build.0 = Debug|x86
+		{BD1B8560-048C-4B08-81BB-2E0795AC1172}.Release|x86.ActiveCfg = Release|x86
+		{BD1B8560-048C-4B08-81BB-2E0795AC1172}.Release|x86.Build.0 = Release|x86
+		{90FE68FB-E912-42D8-9450-323DEAB6C419}.Debug|x86.ActiveCfg = Debug|x86
+		{90FE68FB-E912-42D8-9450-323DEAB6C419}.Debug|x86.Build.0 = Debug|x86
+		{90FE68FB-E912-42D8-9450-323DEAB6C419}.Release|x86.ActiveCfg = Release|x86
+		{90FE68FB-E912-42D8-9450-323DEAB6C419}.Release|x86.Build.0 = Release|x86
+		{D91DEC5A-5C18-4609-8D21-382F12814740}.Debug|x86.ActiveCfg = Debug|x86
+		{D91DEC5A-5C18-4609-8D21-382F12814740}.Debug|x86.Build.0 = Debug|x86
+		{D91DEC5A-5C18-4609-8D21-382F12814740}.Release|x86.ActiveCfg = Release|x86
+		{D91DEC5A-5C18-4609-8D21-382F12814740}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
