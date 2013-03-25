@@ -16,7 +16,7 @@ namespace MarketDataDissemination.Infrastructure
         }
 
         public string Contract { get; set; }
-        
+
         public List<Order> BuyOrders { get; set; }
 
         public List<Order> SellOrders { get; set; }
@@ -110,14 +110,31 @@ namespace MarketDataDissemination.Infrastructure
 
         private void ProcessBuyAddOrder(long level, double price, long quantity)
         {
-            var order = new Order(quantity, price, level);
-            BuyOrders.Add(order);
+            lock (BuyOrders)
+            {
+                var order = new Order(quantity, price, level);
+                foreach (var buyOrder in BuyOrders)
+                {
+                    if (buyOrder.Level >= level)
+                        buyOrder.Level++;
+                }
+
+                BuyOrders.Add(order);
+            }
         }
 
         private void ProcessSellAddOrder(long level, double price, long quantity)
         {
-            var order = new Order(quantity,price,level);
-            SellOrders.Add(order);
+            lock (SellOrders)
+            {
+                var order = new Order(quantity, price, level);
+                foreach (var sellOrder in SellOrders)
+                {
+                    if (sellOrder.Level >= level)
+                        sellOrder.Level++;
+                }
+                SellOrders.Add(order);
+            }
         }
         
     }

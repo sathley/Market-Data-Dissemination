@@ -34,12 +34,14 @@ namespace MarketDataDissemination.Infrastructure
 
     }
 
+    [Serializable]
     public enum LimitOrderSide
     {
         Buy,
         Sell
     }
 
+    [Serializable]
     public enum MessageType
     {
         NewLevel,
