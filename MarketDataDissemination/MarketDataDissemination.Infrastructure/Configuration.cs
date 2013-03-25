@@ -18,14 +18,14 @@ namespace MarketDataDissemination.Infrastructure
             get { return int.Parse(ConfigurationManager.AppSettings["Porta"]); }
         }
 
-        public static string IPb
+        public static string IPz
         {
-            get { return ConfigurationManager.AppSettings["IPb"]; }
+            get { return ConfigurationManager.AppSettings["IPz"]; }
         }
 
-        public static int Portb
+        public static int Portz
         {
-            get { return int.Parse(ConfigurationManager.AppSettings["Portb"]); }
+            get { return int.Parse(ConfigurationManager.AppSettings["Portz"]); }
         }
 
         public static double ProbabiltyParameter

@@ -49,9 +49,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MarketDataDissemination.Infrastructure\MarketDataDissemination.Infrastructure.csproj">
       <Project>{D91DEC5A-5C18-4609-8D21-382F12814740}</Project>
       <Name>MarketDataDissemination.Infrastructure</Name>

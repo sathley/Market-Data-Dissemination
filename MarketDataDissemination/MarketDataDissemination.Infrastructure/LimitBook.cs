@@ -8,8 +8,6 @@ namespace MarketDataDissemination.Infrastructure
 {
     public class LimitBook
     {
-        public object _sell;
-        public object _buy;
         public LimitBook(string contract)
         {
             this.Contract = contract;
@@ -38,7 +36,7 @@ namespace MarketDataDissemination.Infrastructure
 
         private void ProcessSellDeleteOrder(long level)
         {
-            lock(_sell)
+            lock(SellOrders)
             {
                 var orderToDelete = SellOrders.Find(o => o.Level == level);
                 if (orderToDelete != null)
@@ -48,7 +46,7 @@ namespace MarketDataDissemination.Infrastructure
 
         private void ProcessBuyDeleteOrder(long level)
         {
-            lock (_buy)
+            lock (BuyOrders)
             {
                 var orderToDelete = BuyOrders.Find(o => o.Level == level);
                 if (orderToDelete != null)
@@ -71,7 +69,7 @@ namespace MarketDataDissemination.Infrastructure
 
         private void ProcessBuyModifyOrder(long level, double price, long quantity)
         {
-            lock (_buy)
+            lock (BuyOrders)
             {
                 var orderToModify = BuyOrders.Find(o => o.Level == level);
                 if (orderToModify != null)
@@ -85,7 +83,7 @@ namespace MarketDataDissemination.Infrastructure
 
         private void ProcessSellModifyOrder(long level, double price, long quantity)
         {
-            lock (_sell)
+            lock (SellOrders)
             {
                 var orderToModify = SellOrders.Find(o => o.Level == level);
                 if (orderToModify != null)
