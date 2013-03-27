@@ -18,6 +18,7 @@ namespace MarketDataDissemination.Infrastructure
             this.Side = side;
             this.Type = type;
         }
+
         public long Sequence { get; set; }
 
         public string Contract { get; set; }

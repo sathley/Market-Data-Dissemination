@@ -27,9 +27,9 @@ namespace MarketDataDissemination
 
         public int Portz { get; set; }
 
-        public EndPoint EP1 { get; set; }
+        public IPEndPoint EP1 { get; set; }
 
-        public EndPoint EP2 { get; set; }
+        public IPEndPoint EP2 { get; set; }
 
         public double ProbabilityParameter { get; set; }
 
@@ -37,11 +37,38 @@ namespace MarketDataDissemination
         {
             var contract = new List<string>() {"APPLE","IBM","GOOGLE","MICROSOFT","AMAZON","FACEBOOK"};
             
+            bool sideFlag = false;
             var random = new Random();
-            
-            for (int i = 0; i < 50; i++)
+            var sequence = 1;
+            //UDPClient clientOne = new UDPClient(EP1);
+            //UDPClient clientTwo = new UDPClient(EP2);
+                    
+            for (int i = 0; i < 5; i++)
             {
-                var message = new ExchangeAMd(i, contract[random.Next(0, contract.Count - 1)],);
+                for (int j = 1; j < 6; j++)
+                {
+                    var side = sideFlag ? LimitOrderSide.Sell : LimitOrderSide.Buy;
+                    sideFlag = sideFlag != true;
+                    var message = new ExchangeAMd(sequence++, contract[i], j, random.Next(500), random.Next(500), side,
+                                                  MessageType.NewLevel);
+                    var randomNum = random.Next(100);
+                    string data = JsonHelper.JsonSerializer(message);
+
+                    if (randomNum <= 100*ProbabilityParameter)
+                    {
+                        Client.Client.ProcessOrder(message);
+                        Client.Client.ProcessOrder(message);
+                        //clientOne.Send(data);
+                        //clientTwo.Send(data);
+                    }
+                    else
+                    {
+                        Client.Client.ProcessOrder(message);
+                        Client.Client.ProcessOrder(message);
+                        //clientTwo.Send(data);
+                        //clientOne.Send(data);
+                    }
+                }
             }
         }
     }

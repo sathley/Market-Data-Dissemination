@@ -14,7 +14,7 @@ namespace MarketDataDissemination.Client
     {
         public static List<LimitBook> Books = new List<LimitBook>();
 
-        public static long LastHighestSequesnceNumber = 0;
+        public static long LastHighestSequenceNumber = 0;
 
         public static int CountOfMessagesProcessed = 0;
 
@@ -38,7 +38,8 @@ namespace MarketDataDissemination.Client
         {
             var done = false;
 
-            var listener = new UdpClient(remoteIP.Port);
+            var listener = new UdpClient(remoteIP);
+            listener.Connect(remoteIP);
             var groupEP = new IPEndPoint(IPAddress.Any, remoteIP.Port);
             try
             {
@@ -49,6 +50,7 @@ namespace MarketDataDissemination.Client
                     string json = EncodingUtility.Decode(bytes);
                     Console.WriteLine("Received broadcast from {0}:{1} :\n {2}\n", groupEP.Address,groupEP.Port, json);
                     var message = JsonHelper.JsonDeserialize<ExchangeAMd>(json);
+                    //Do aaync
                     ProcessOrder(message);
                 }
             }
@@ -64,9 +66,12 @@ namespace MarketDataDissemination.Client
 
         public static void ProcessOrder(ExchangeAMd message)
         {
-            if(message.Sequence <= LastHighestSequesnceNumber)
+            if(message.Sequence <= LastHighestSequenceNumber)
                 return;
-            LastHighestSequesnceNumber = message.Sequence;
+            if(message.Sequence > LastHighestSequenceNumber + 1)
+                //Inconsistent state (Message lost)
+            LastHighestSequenceNumber = message.Sequence;
+
             LimitBook book;
             lock (Books)
             {

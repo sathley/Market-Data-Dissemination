@@ -20,6 +20,7 @@ namespace MarketDataDissemination.Infrastructure
             Internal = new UdpClient(endPoint);
             this.IP = endPoint.Address;
             this.Port = endPoint.Port;
+            Internal.Connect(endPoint);
         }
 
         public void Send(string data)
@@ -27,11 +28,10 @@ namespace MarketDataDissemination.Infrastructure
             Internal.Send(EncodingUtility.Encode(data), data.Length);
         }
 
-        public string Recieve()
-        {
-            var ipEp = new IPEndPoint(this.IP, this.Port);
-            return EncodingUtility.Decode(Internal.Receive(ref ipEp));
-        }
-
+        //public string Recieve()
+        //{
+        //    var ipEp = new IPEndPoint(this.IP, this.Port);
+        //    return EncodingUtility.Decode(Internal.Receive(ref ipEp));
+        //}
     }
 }

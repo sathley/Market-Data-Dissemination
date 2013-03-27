@@ -40,7 +40,14 @@ namespace MarketDataDissemination.Infrastructure
             {
                 var orderToDelete = SellOrders.Find(o => o.Level == level);
                 if (orderToDelete != null)
+                {
                     SellOrders.Remove(orderToDelete);
+                    foreach (var sellOrder in SellOrders)
+                    {
+                        if (sellOrder.Level >= level)
+                            sellOrder.Level--;
+                    }
+                }
             }
         }
 
@@ -50,7 +57,14 @@ namespace MarketDataDissemination.Infrastructure
             {
                 var orderToDelete = BuyOrders.Find(o => o.Level == level);
                 if (orderToDelete != null)
+                {
                     BuyOrders.Remove(orderToDelete);
+                    foreach (var buyOrder in BuyOrders)
+                    {
+                        if (buyOrder.Level >= level)
+                            buyOrder.Level--;
+                    }
+                }
             }
         }
 
